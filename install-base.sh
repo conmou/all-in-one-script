@@ -54,22 +54,22 @@ setup-basic-config() {
     git config --global init.defaultBranch main
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Setup ssh${CLEAR}"
-    if [ -f "conmoukey" ]; then
+    if [ -f "id_rsa" ]; then
         echo -e "${CYAN}${BOLD}CHECK ${BLUE}=> ${GREEN}SSH private key exists!${CLEAR}"
 
         echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Make .ssh directory${CLEAR}"
         mkdir -p ~/.ssh
 
         echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Import SSH private key${CLEAR}"
-        cp conmoukey ~/.ssh
-        chmod 600 ~/.ssh/conmoukey
+        cp id_rsa ~/.ssh
+        chmod 600 ~/.ssh/id_rsa
 
-        if [ -f "conmoukey" ]; then
+        if [ -f "id_rsa" ]; then
             echo -e "${CYAN}${BOLD}CHECK ${BLUE}=> ${GREEN}Paired SSH public key exists!${CLEAR}"
 
             echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Import SSH public key${CLEAR}"
-            cp conmoukey.pub ~/.ssh
-            chmod 644 ~/.ssh/conmoukey.pub
+            cp id_rsa.pub ~/.ssh
+            chmod 644 ~/.ssh/id_rsa.pub
         fi
     else
         echo -e "${CYAN}${BOLD}CHECK ${BLUE}=> ${YELLOW}SSH private key not exist!${CLEAR}"
@@ -77,8 +77,8 @@ setup-basic-config() {
         echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Make .ssh directory${CLEAR}"
         mkdir -p ~/.ssh
 
-        echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Generate a new conmoukey key pair${CLEAR}"
-        ssh-keygen -t rsa -f ~/.ssh/ -N ""
+        echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Generate a new id_rsa key pair${CLEAR}"
+        ssh-keygen -t rsa  -C "rock12365477@gmail.com" -N ""
     fi
 }
 
